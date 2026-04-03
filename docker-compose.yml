@@ -1,0 +1,9 @@
+services:
+  db_aquasafe:
+    image: postgres
+    environment:
+      - POSTGRES_DB=banco_checklist
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=31599499
+    ports:
+      - "5432:5432"
