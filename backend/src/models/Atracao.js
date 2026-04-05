@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = require("../database.js");
 
-const Atracao = sequelize.define("Atracoes",{
+const atracao = sequelize.define("atracoes",{
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -11,9 +11,12 @@ const Atracao = sequelize.define("Atracoes",{
     nome: {
         type: DataTypes.STRING
     },
-    ativo: {
+    ativa: {
         type: DataTypes.BOOLEAN
     }
+},{
+    tableName:'atracoes',
+    timestamps: false 
 });
 
-module.exports = Atracao;
+module.exports = atracao;
