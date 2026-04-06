@@ -17,6 +17,10 @@ const Perguntas= sequelize.define("perguntas", {
     type: DataTypes.STRING,
     allowNull: false
   }
+},{
+    tableName:'perguntas',
+    timestamps: false 
+
 });
 
 module.exports = Perguntas;
