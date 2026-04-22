@@ -1,10 +1,10 @@
-const Usuario = require('../models/Usuario');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+import Usuario from '../models/Usuario.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 //Logica para confirmar o login
-const login = async (req, res) => {
+export const login = async (req, res) => {
     //Aqui eu pego as informaçoes que foram inseridas pelo usuario
     const { email, senha } = req.body
     //Aqui eu pego busco o objeto usuario do banco de dados
@@ -32,4 +32,3 @@ return res.json({ token })
 
 }
 
-module.exports = { login }

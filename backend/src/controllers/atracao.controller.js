@@ -1,6 +1,6 @@
-const Atracao  = require('../models/Atracao');
+import Atracao from '../models/Atracao.js';
 
-const selecionarAtracao = async (req, res)=>{
+export const selecionarAtracao = async (req, res)=>{
     
     try{
     const atracoesdb = await Atracao .findAll({});
@@ -11,7 +11,7 @@ const selecionarAtracao = async (req, res)=>{
     };
 };
 
-const criarAtracao = async (req, res)=>{
+export const criarAtracao = async (req, res)=>{
     const { nome, ativa } = req.body
     if(!nome){
         return res.status(400).json("Insira um nome para a atração")
@@ -29,7 +29,3 @@ const criarAtracao = async (req, res)=>{
 
     };
 };
-
-
-
-module.exports = {selecionarAtracao, criarAtracao}

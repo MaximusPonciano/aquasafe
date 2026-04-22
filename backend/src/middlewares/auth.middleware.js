@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 const JWT = process.env.JWT_SECRET;
 
-const autenticar = (req, res, next) => {
+export const autenticar = (req, res, next) => {
     //Pego o header da requiçao
     const authHeader = req.headers.authorization
 
@@ -22,5 +22,3 @@ const autenticar = (req, res, next) => {
     }
 
 }
-
-module.exports = { autenticar }

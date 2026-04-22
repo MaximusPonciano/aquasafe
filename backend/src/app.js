@@ -1,8 +1,8 @@
-const express = require('express');
-const authRoutes = require('./routes/auth.routes.js');
-const checklistRoutes = require('./routes/checklist.routes.js');
-const atracaoRoutes = require('./routes/atracao.routes.js');
-const perguntaRoutes = require('./routes/pergunta.routes.js');
+import express from 'express';
+import authRoutes from './routes/auth.routes.js';
+import checklistRoutes from './routes/checklist.routes.js';
+import atracaoRoutes from './routes/atracao.routes.js';
+import perguntaRoutes from './routes/pergunta.routes.js';
 
 const app = express();
 const port = 3000

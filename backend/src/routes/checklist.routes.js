@@ -1,9 +1,8 @@
-const { autenticar } = require('../middlewares/auth.middleware');
-const express = require('express');
+import { autenticar } from '../middlewares/auth.middleware.js';
+import express from 'express';
 const router = express.Router();
 
 router.get('/', autenticar, (req, res) => {
-    res.json("Rota protegida!")
 });
 
-module.exports = router
+export default router;

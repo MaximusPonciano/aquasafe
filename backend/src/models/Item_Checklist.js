@@ -1,6 +1,6 @@
-const { Sequelize, DataTypes } = require("sequelize");
+import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = require("../database.js");
+import sequelize from "../database.js";
 
 const Item_CheckList= sequelize.define("item_checklist", {
   id: {
@@ -23,4 +23,4 @@ const Item_CheckList= sequelize.define("item_checklist", {
   }
 });
 
-module.exports = Item_CheckList;
+export default Item_CheckList;

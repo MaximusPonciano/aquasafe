@@ -1,6 +1,6 @@
-const { Sequelize, DataTypes } = require("sequelize");
+import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = require("../database.js");
+import sequelize from "../database.js";
 
 const Perguntas= sequelize.define("perguntas", {
   id: {
@@ -23,4 +23,4 @@ const Perguntas= sequelize.define("perguntas", {
 
 });
 
-module.exports = Perguntas;
+export default Perguntas;

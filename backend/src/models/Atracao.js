@@ -1,6 +1,6 @@
-const { Sequelize, DataTypes } = require("sequelize");
+import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = require("../database.js");
+import sequelize from "../database.js";
 
 const atracao = sequelize.define("atracoes",{
     id: {
@@ -19,4 +19,4 @@ const atracao = sequelize.define("atracoes",{
     timestamps: false 
 });
 
-module.exports = atracao;
+export default atracao;
