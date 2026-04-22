@@ -1,9 +1,9 @@
-import express from 'express';
-import { autenticar } from '../middlewares/auth.middleware.js';
-import {selecionarAtracao, criarAtracao} from '../controllers/atracao.controller.js';
+import express from "express";
+import { authenticator } from "../middlewares/auth.middleware.js";
+import { getAttractions, createAttraction,} from "../controllers/atracao.controller.js";
 const router = express.Router();
 
-router.get('/', autenticar, selecionarAtracao);
-router.post('/', autenticar, criarAtracao);
+router.get("/", authenticator, getAttractions);
+router.post("/", authenticator, createAttraction);
 
 export default router;

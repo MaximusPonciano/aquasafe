@@ -1,7 +1,13 @@
-import Checklis from '../models/CheckList.js';
-import Item_checklist from '../models/Item_Checklist.js';
+import Checklist from "../models/Checklist.js";
+import ItemChecklist from "../models/ItemChecklist.js";
 
-export const checklist = async (req, res) =>{
-    const { usuario_id, atracao_id, data_hora, respota, observacao} = req.body;
+export const createChecklist = async (req, res) => {
+  const {
+    usuario_id: userId,
+    atracao_id: attractionId,
+    data_hora: dateTime,
+    respota: response,
+    observacao: observation,
+  } = req.body;
 
 };

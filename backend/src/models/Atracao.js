@@ -2,21 +2,27 @@ import { Sequelize, DataTypes } from "sequelize";
 
 import sequelize from "../database.js";
 
-const atracao = sequelize.define("atracoes",{
+const Attraction = sequelize.define(
+  "atracoes",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    nome: {
-        type: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      field: "nome",
     },
-    ativa: {
-        type: DataTypes.BOOLEAN
-    }
-},{
-    tableName:'atracoes',
-    timestamps: false 
-});
+    active: {
+      type: DataTypes.BOOLEAN,
+      field: "ativa",
+    },
+  },
+  {
+    tableName: "atracoes",
+    timestamps: false,
+  },
+);
 
-export default atracao;
+export default Attraction;

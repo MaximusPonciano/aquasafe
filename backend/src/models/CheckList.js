@@ -2,30 +2,34 @@ import { Sequelize, DataTypes } from "sequelize";
 
 import sequelize from "../database.js";
 
-const CheckList= sequelize.define("checklists", {
+const Checklist = sequelize.define("checklists", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  usuario_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references:{model: 'Usuario', key: 'id'}
+    field: "usuario_id",
+    references: { model: "Usuario", key: "id" },
   },
-  atracao_id: {
+  attractionId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references:{model: 'Atracao', key: 'id'}
+    field: "atracao_id",
+    references: { model: "Atracao", key: "id" },
   },
-  data_hora: {
+  dateTime: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    field: "data_hora",
   },
-  obseravao: {
+  observation: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    field: "observacao",
   },
 });
 
-export default CheckList;
+export default Checklist;

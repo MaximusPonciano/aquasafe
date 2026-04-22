@@ -1,32 +1,28 @@
-import Atracao from '../models/Atracao.js';
-import Pergunta from '../models/Perguntas.js';
+import Question from "../models/Perguntas.js";
 
-export const criarPergunta = async (req, res)=>{
-    const {pergunta, atracao_id}  = req.body;
-    if(!pergunta){
-        return res.status(400).json("Insira uma pergunta para a atração")
+export const createQuestion = async (req, res) => {
+  const { pergunta: questionText, atracao_id: attractionId } = req.body;
 
-    }
+  if (!questionText) {
+    return res.status(400).json("Adicine uma pergunta para a atração");
+  }
 
-    try{
-        const perguntacreate = await Pergunta.create({
-        pergunta: pergunta,
-        atracao_id: atracao_id
+  try {
+    await Question.create({
+      questionText,
+      attractionId,
     });
-        
-        res.status(201).json({ mensagem: "Pergunta adiciona com sucesso"})
 
-    }catch{
-        res.status(500).json({ mensagem: "Adicione uma pergunta para a atração"});
-    }
-    
+    res.status(201).json({ message: "Pergunta adicionada com Sucesso!" });
+  } catch (error) {
+    res.status(500).json({ message: "Falha ao adicionar a pergunta"});
+  }
 };
 
-export const listarPerguntas = async (req, res) =>{
-    const { id } = req.params
-    const perguntalist = await Pergunta.findAll({
-        where:{atracao_id: id}});
-    res.json(perguntalist)
-    
-
-}
+export const listQuestions = async (req, res) => {
+  const { id } = req.params;
+  const questionList = await Question.findAll({
+    where: { attractionId: id },
+  });
+  res.json(questionList);
+};

@@ -1,31 +1,27 @@
-import Atracao from '../models/Atracao.js';
+import Attraction from '../models/Atracao.js';
 
-export const selecionarAtracao = async (req, res)=>{
-    
-    try{
-    const atracoesdb = await Atracao .findAll({});
-    res.json(atracoesdb);
-
-    } catch{
-        res.status(500).json({mensagem: "Erro inesperado no Servidor"})
-    };
+export const getAttractions = async (req, res) => {
+    try {
+        const attractions = await Attraction.findAll({});
+        res.json(attractions);
+    } catch (error) {
+        res.status(500).json({ message: "Erro inesperado no Servidor" });
+    }
 };
 
-export const criarAtracao = async (req, res)=>{
-    const { nome, ativa } = req.body
-    if(!nome){
-        return res.status(400).json("Insira um nome para a atração")
-    };
+export const createAttraction = async (req, res) => {
+    const { name, active } = req.body;
+    if (!name) {
+        return res.status(400).json("Insira um nome para a atração");
+    }
 
-    try{
-    const atracao = await Atracao.create({ 
-        nome: nome,
-        ativa: ativa });
-    res.status(201).json({ mensagem: "Atração criada com sucesso!" });
-
-    }catch{
-        res.status(500).json({mensagem: "Erro inesperado no Servidor"})
-
-
-    };
+    try {
+        await Attraction.create({
+            name,
+            active
+        });
+        res.status(201).json({ message: "Atração criada com sucesso!" });
+    } catch (error) {
+        res.status(500).json({ message: "Erro inesperado no Servidor" });
+    }
 };
