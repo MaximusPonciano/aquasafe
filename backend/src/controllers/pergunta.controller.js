@@ -4,14 +4,11 @@ export const createQuestion = async (req, res) => {
   const { pergunta: questionText, atracao_id: attractionId } = req.body;
 
   if (!questionText) {
-    return res.status(400).json("Adicine uma pergunta para a atração");
+    return res.status(400).json({ message: "Adicine uma pergunta para a atração"});
   }
 
   try {
-    await Question.create({
-      questionText,
-      attractionId,
-    });
+    await Question.create({ questionText, attractionId, });
 
     res.status(201).json({ message: "Pergunta adicionada com Sucesso!" });
   } catch (error) {
