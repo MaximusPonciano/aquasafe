@@ -3,6 +3,9 @@
     "port": 3000,
     "corsOrigin": "http://localhost:5173"
   },
+  "jwt": {
+    "expiresIn": "1h"
+  },
   "api": {
     "prefixAuth": "/auth",
     "prefixChecklist": "/checklists",

@@ -22,7 +22,7 @@ const newCheckList = await Checklist.create({
     observation: observation
 });
   
-  const { respostas } = req.body
+  const { respostas } = req.body;
   
   await Promise.all(respostas.map(async (item) => {
     await ItemChecklist.create({
@@ -47,7 +47,7 @@ export const getChecklist = async (req, res) =>{
   });
   res.json(checklist)
  }catch{
-  res.status.json({ message: messages.checklist.fetchError })
+  res.status.json({ message: messages.checklist.fetchError });
   }
 };
 
@@ -61,5 +61,5 @@ export const deleteChecklist = async (req, res) =>{
       console.error(error)
         res.status(500).json({ message: messages.common.serverError });
 
-    };
+    }
 };
