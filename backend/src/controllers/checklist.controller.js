@@ -1,4 +1,5 @@
 import Checklist from "../models/Checklist.js";
+import { messages } from "../config/constants.js";
 import ItemChecklist from "../models/ItemChecklist.js";
 
 export const createChecklist = async (req, res) => {
@@ -9,7 +10,7 @@ export const createChecklist = async (req, res) => {
   } = req.body;
   
   if( !attractionId ){
-        return res.status(400).json("Insira a atração");
+        return res.status(400).json({ message: messages.checklist.requiredAttraction});
     }
   try{
   const userId = req.usuario.id;
@@ -30,11 +31,11 @@ const newCheckList = await Checklist.create({
       compliant: item.conforme
     });
   }));
-  res.status(201).json({ message: "Checklist criado com sucesso"});
+  res.status(201).json({ message: messages.checklist.created });
 
   }catch(error){
     console.error(error);
-    res.status(500).json({ message: "Erro ao criar Checklist"});
+    res.status(500).json({ message: messages.checklist.createError });
   }
 };
 
@@ -46,7 +47,7 @@ export const getChecklist = async (req, res) =>{
   });
   res.json(checklist)
  }catch{
-  res.status.json({ message: "Falha ao buscar Checklist"})
+  res.status.json({ message: messages.checklist.fetchError })
   }
 };
 
@@ -55,10 +56,10 @@ export const deleteChecklist = async (req, res) =>{
         const { id } = req.params;
         await ItemChecklist.destroy({ where: { checklistId: id } });
         await Checklist.destroy({ where: { id } });
-        res.status(201).json({ message: "Checklist excluida com sucesso!" });
+        res.status(201).json({ message: messages.checklist.fetchError });
     } catch(error){
       console.error(error)
-        res.status(500).json({ message: "Erro inesperado no Servidor" });
+        res.status(500).json({ message: messages.common.serverError });
 
     };
 };

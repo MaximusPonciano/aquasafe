@@ -1,18 +1,19 @@
 import Question from "../models/Perguntas.js";
+import { messages } from "../config/constants.js";
 
 export const createQuestion = async (req, res) => {
   const { pergunta: questionText, atracao_id: attractionId } = req.body;
 
   if (!questionText) {
-    return res.status(400).json({ message: "Adicine uma pergunta para a atração"});
+    return res.status(400).json({ message: messages.question.requiredText});
   }
 
   try {
     await Question.create({ questionText, attractionId, });
 
-    res.status(201).json({ message: "Pergunta adicionada com Sucesso!" });
+    res.status(201).json({ message: messages.question.created });
   } catch (error) {
-    res.status(500).json({ message: "Falha ao adicionar a pergunta"});
+    res.status(500).json({ message: messages.question.fetchError });
   }
 };
 

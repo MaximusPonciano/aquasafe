@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { messages } from "../config/constants.js";
 import "dotenv/config";
 
 const jwtSecret = process.env.JWT_SECRET;
@@ -9,7 +10,7 @@ export const authenticator = (req, res, next) => {
 
   //Valido se ele existe
   if (!authHeader) {
-    return res.status(401).json({ message: "Usuario não autenticado" });
+    return res.status(401).json({ message: messages.auth.noToken });
   }
   //Pego o token de acesso
   const token = authHeader.split(" ")[1];
@@ -19,6 +20,6 @@ export const authenticator = (req, res, next) => {
     req.usuario = validate;
     next();
   } catch {
-    res.status(401).json({ message: "Token não validado" });
+    res.status(401).json({ message: messages.auth.invalidToken });
   }
 };
