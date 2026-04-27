@@ -15,7 +15,8 @@ export const authenticator = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     //Verifico se ele pe valido
-    jwt.verify(token, jwtSecret);
+    const validate = jwt.verify(token, jwtSecret);
+    req.usuario = validate;
     next();
   } catch {
     res.status(401).json({ message: "Token não validado" });

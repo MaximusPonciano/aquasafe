@@ -17,13 +17,16 @@ const ItemChecklist = sequelize.define("item_checklist", {
   questionId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    field: "Pergunta_id",
+    field: "pergunta_id",
     references: { model: "Pergunta", key: "id" },
   },
-  compliant: {
+    compliant: {
     type: DataTypes.BOOLEAN,
     field: "conforme",
-  },
+  }
+}, {
+  tableName: 'itens_checklist',
+  timestamps: false
 });
 
 export default ItemChecklist;

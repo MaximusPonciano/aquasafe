@@ -28,8 +28,13 @@ const Checklist = sequelize.define("checklists", {
   observation: {
     type: DataTypes.STRING,
     allowNull: true,
-    field: "observacao",
+    field: "observacoes",
   },
-});
+  
+},{
+  tableName: 'checklist',
+  timestamps: false
+} );
+
 
 export default Checklist;
