@@ -1,43 +1,61 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
+import Input from "../components/input";
 
 function Login() {
-    const navigate = useNavigate();
-    const handleSubmit = async(e)=>{
-    e.preventDefault()
-    const resposta = await api.post('/auth/login',{
-        email: email,
-        senha: senha
-    })
-    localStorage.setItem('token', resposta.data.token);
-    navigate('/home');
-};
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    return(
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input 
-          type="email" 
-          value={email} // 3. Valor atrelado ao estado
-          onChange={(e) => setEmail(e.target.value)} // 4. Atualiza o estado
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await api.post("/auth/login", { email, password });
+      localStorage.setItem("token", response.data.token);
+      navigate("/home");
+    } catch (err) {
+      setError("Email ou senha incorretos");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <Input
+          label="Email:"
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError("");
+          }}
         />
-      </label>
-      <label>
-        Senha:
-        <input
-         type="password"
-         value={senha}
-         onChange={(e) => setSenha(e.target.value)}
-         />
-      </label>
-      <button type="submit">Enviar</button>
-    </form>
+        <Input
+          label="Senha:"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setError("");
+          }}
+          showToggle
+          onToggle={() => setShowPassword(!showPassword)}
+        />
+        {error && <p>{error}</p>}
+        <button type="submit" disabled={loading}>
+          {loading ? "Carregando..." : "Enviar"}
+        </button>
+      </form>
+    </div>
   );
+}
 
-};
-
-
-export default Login
+export default Login;

@@ -1,11 +1,11 @@
 import User from "../models/Usuario.js";
-import { messages } from '../config/constants.js';
+import { config, messages } from "../config/constants.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 export const login = async (req, res) => {
-  const { email, senha: password } = req.body;
+  const { email, password } = req.body;
   const user = await User.findOne({
     where: { email },
   });
@@ -21,6 +21,8 @@ export const login = async (req, res) => {
 
   const loggedUser = { id: user.id, role: user.role };
   const secret = process.env.JWT_SECRET;
-  const token = jwt.sign(loggedUser, secret, { expiresIn: config.jwt.expiresIn });
+  const token = jwt.sign(loggedUser, secret, {
+    expiresIn: config.jwt.expiresIn,
+  });
   return res.json({ token });
 };

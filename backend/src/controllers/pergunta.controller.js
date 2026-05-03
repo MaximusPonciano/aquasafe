@@ -2,14 +2,14 @@ import Question from "../models/Perguntas.js";
 import { messages } from "../config/constants.js";
 
 export const createQuestion = async (req, res) => {
-  const { pergunta: questionText, atracao_id: attractionId } = req.body;
+  const { questionText, attractionId } = req.body;
 
   if (!questionText) {
-    return res.status(400).json({ message: messages.question.requiredText});
+    return res.status(400).json({ message: messages.question.requiredText });
   }
 
   try {
-    await Question.create({ questionText, attractionId, });
+    await Question.create({ questionText, attractionId });
 
     res.status(201).json({ message: messages.question.created });
   } catch (error) {
@@ -23,4 +23,17 @@ export const listQuestions = async (req, res) => {
     where: { attractionId: id },
   });
   res.json(questionList);
+};
+
+export const deleteQuestions = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Question.destroy({
+      where: { id },
+    });
+    res.status(200).json({ message: messages.question.deleted });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: messages.common.ServerError });
+  }
 };

@@ -24,6 +24,7 @@
   "question": {
     "requiredText": "Adicione uma pergunta para a atração",
     "created": "Pergunta adicionada com Sucesso!",
-    "fetchError": "Falha ao adicionar a pergunta"
+    "fetchError": "Falha ao adicionar a pergunta",
+    "Deleted": "Pergunta deletada com sucesso!"
   }
 }
